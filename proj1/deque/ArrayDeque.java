@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<Item> implements Iterable<Item> {
+public class ArrayDeque<Item> implements Iterable<Item>, Deque<Item> {
 
     public int size;
     public Item[] items = (Item[]) new Object[8];
@@ -24,9 +24,10 @@ public class ArrayDeque<Item> implements Iterable<Item> {
     }
 
     /** Adds an item of type T to the front of the deque*/
-    private int FirstHelper(int index) {
+    public int FirstHelper(int index) {
         return (index - 1 + items.length) % items.length;
     }
+    @Override
     public void addFirst(Item item) {
         if (size == items.length) {
             resize(size * 2);
@@ -37,9 +38,10 @@ public class ArrayDeque<Item> implements Iterable<Item> {
     }
 
     /** dds an item of type T to the back of the deque*/
-    private int LastHelper(int index) {
+    public int LastHelper(int index) {
         return (index + 1 + items.length) % items.length;
     }
+    @Override
     public void addLast(Item item) {
         if (size == items.length) {
             resize(size * 2);
@@ -50,19 +52,16 @@ public class ArrayDeque<Item> implements Iterable<Item> {
     }
 
     /** Returns true if deque is empty, false otherwise*/
-    public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
-    }
+
 
     /** Returns the size of the list. */
+    @Override
     public int size() {
         return size;
     }
 
     /** print the Deque*/
+    @Override
     public void printDeque() {
         int PrintIndex = LastHelper(NextFirst);
         int num = size;
@@ -81,6 +80,8 @@ public class ArrayDeque<Item> implements Iterable<Item> {
             resize(items.length/4);
         }
     }
+
+    @Override
     public Item removeFirst() {
         if (size == 0) {
             return null;
@@ -93,6 +94,7 @@ public class ArrayDeque<Item> implements Iterable<Item> {
         return ans;
     }
 
+    @Override
     public Item removeLast() {
         if (size == 0) {
             return null;
@@ -107,6 +109,7 @@ public class ArrayDeque<Item> implements Iterable<Item> {
 
     /**Gets the item at the given index, where 0 is the front, 1 is the next item, and so forth.
      If no such item exists, returns null. Must not alter the deque*/
+    @Override
     public Item get(int index) {
         if (index >= size){
             return null;
