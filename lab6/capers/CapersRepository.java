@@ -22,7 +22,9 @@ public class CapersRepository {
     /** Main metadata folder. */
     static final File CAPERS_FOLDER = Utils.join(CWD, "capers"); // TODO Hint: look at the `join`
                                             //      function in Utils
-    static final File STORY_FOLDER = Utils.join(CAPERS_FOLDER, "story");
+    static final File STORY_FOLDER = new File(CAPERS_FOLDER, "story");
+    static final File DOG_FOLDER = Utils.join(CAPERS_FOLDER, "dogs");
+
 
     /**
      * Does required filesystem operations to allow for persistence.
@@ -34,8 +36,9 @@ public class CapersRepository {
      *    - story -- file containing the current story
      */
     public static void setupPersistence() {
-        Dog.DOG_FOLDER.mkdir();
         CAPERS_FOLDER.mkdir();
+        DOG_FOLDER.mkdir();
+
         try {
             STORY_FOLDER.createNewFile();
         } catch (IOException e) {
