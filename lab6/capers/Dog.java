@@ -1,7 +1,6 @@
 package capers;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 
 /** Represents a dog that can be serialized.
@@ -57,12 +56,8 @@ public class Dog implements Serializable{ // TODO
      */
     public void saveDog() {
         File dogFile = new File(DOG_FOLDER, name);
-        try {
-            dogFile.createNewFile();
-            Utils.writeObject(dogFile, this);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        Utils.writeObject(dogFile, this);
 
     }
 
