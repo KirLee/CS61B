@@ -24,8 +24,8 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K,V> {
     }
     @Override
     public void clear() {
-        root = null;
         root.size = 0;
+        root = null;
 
     }
 
@@ -40,7 +40,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K,V> {
     }
 
     private V get(Node x, K key) {
-        if (key == null) throw new IllegalArgumentException("calls get() with a null key");
+        //if (key == null) throw new IllegalArgumentException("calls get() with a null key");
         if (x == null) return null;
         int cmp = key.compareTo(x.key);
         if      (cmp < 0) return get(x.left, key);
@@ -80,7 +80,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K,V> {
         }
     }
 
-    public void printHelper(Node x) {
+    private void printHelper(Node x) {
         if (x.left != null) {
             printHelper(x.left);
         }
