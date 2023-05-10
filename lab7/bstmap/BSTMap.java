@@ -40,7 +40,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K,V> {
     }
 
     private V get(Node x, K key) {
-        //if (key == null) throw new IllegalArgumentException("calls get() with a null key");
+        if (key == null) return null;
         if (x == null) return null;
         int cmp = key.compareTo(x.key);
         if      (cmp < 0) return get(x.left, key);
